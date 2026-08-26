@@ -1,0 +1,302 @@
+<section id="job-tracker-27" aria-labelledby="tracker-title">
+  <style>
+    #job-tracker-27 {
+      --job-paper: light-dark(#f8fffb, #10251f);
+      --job-surface: light-dark(#ffffff, #17342b);
+      --job-ink: light-dark(#213f38, #e8f7f0);
+      --job-muted: light-dark(#658078, #acc5bc);
+      --job-line: light-dark(#d6ebe1, #315449);
+      --job-mint: light-dark(#c9f2df, #214c3e);
+      --job-mint-deep: light-dark(#247a5a, #92e6bf);
+      --job-sky: light-dark(#dceeff, #1d3f5a);
+      --job-lilac: light-dark(#eee7ff, #3a315b);
+      --job-peach: light-dark(#ffe9d8, #593d2b);
+      --job-selected: light-dark(#edfff5, #1d4538);
+      color: var(--job-ink);
+      font-family: ui-rounded, "SF Pro Rounded", "Microsoft YaHei UI", sans-serif;
+    }
+    #job-tracker-27 .job-shell { background: var(--job-paper); border: 1px solid var(--job-line); border-radius: 24px; overflow: hidden; box-shadow: 0 14px 36px color-mix(in srgb, var(--job-mint-deep) 12%, transparent); }
+    #job-tracker-27 .job-hero { background: linear-gradient(120deg, var(--job-mint), var(--job-sky) 58%, var(--job-lilac)); padding: 28px; }
+    #job-tracker-27 .job-hero-top { display: flex; align-items: start; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+    #job-tracker-27 .job-kicker { display: inline-flex; align-items: center; gap: 8px; color: var(--job-mint-deep); font-size: .84rem; letter-spacing: .08em; }
+    #job-tracker-27 .job-kicker::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: currentColor; box-shadow: 0 0 0 5px color-mix(in srgb, currentColor 16%, transparent); }
+    #job-tracker-27 h2, #job-tracker-27 h3 { color: var(--job-ink); font-weight: 500; }
+    #job-tracker-27 h2 { margin: 8px 0 6px; letter-spacing: -.025em; }
+    #job-tracker-27 .job-subtitle { margin: 0; color: var(--job-muted); }
+    #job-tracker-27 .job-count { display: inline-flex; align-items: center; background: color-mix(in srgb, var(--job-surface) 78%, transparent); border: 1px solid color-mix(in srgb, var(--job-mint-deep) 22%, var(--job-line)); border-radius: 999px; padding: 9px 13px; color: var(--job-ink); white-space: nowrap; }
+    #job-tracker-27 .job-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 24px; }
+    #job-tracker-27 .job-stat { background: color-mix(in srgb, var(--job-surface) 78%, transparent); border: 1px solid color-mix(in srgb, var(--job-line) 78%, transparent); border-radius: 16px; padding: 14px; }
+    #job-tracker-27 .job-stat span { display: block; color: var(--job-muted); font-size: .82rem; }
+    #job-tracker-27 .job-stat strong { display: block; font-size: 1.45rem; font-weight: 500; margin-top: 4px; }
+    #job-tracker-27 .job-main { padding: 22px 24px 28px; }
+    #job-tracker-27 .job-filter-panel { background: var(--job-surface); border: 1px solid var(--job-line); border-radius: 18px; padding: 16px; }
+    #job-tracker-27 .filter-title { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-bottom: 12px; }
+    #job-tracker-27 .filter-title strong { font-weight: 500; }
+    #job-tracker-27 .filter-title span { color: var(--job-muted); font-size: .82rem; }
+    #job-tracker-27 .job-filters { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+    #job-tracker-27 .job-filters label { display: grid; gap: 6px; color: var(--job-muted); font-size: .82rem; }
+    #job-tracker-27 .job-filters select { appearance: auto; min-width: 0; padding: 9px 10px; border: 1px solid var(--job-line); border-radius: 10px; background: var(--job-paper); color: var(--job-ink); font: inherit; }
+    #job-tracker-27 .company-watch { margin-top: 16px; background: var(--job-surface); border: 1px solid var(--job-line); border-radius: 18px; padding: 16px; }
+    #job-tracker-27 .watch-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-bottom: 12px; }
+    #job-tracker-27 .watch-head strong { font-weight: 500; }
+    #job-tracker-27 .watch-head span { color: var(--job-muted); font-size: .82rem; }
+    #job-tracker-27 .watch-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+    #job-tracker-27 .watch-card { background: var(--job-paper); border: 1px solid var(--job-line); border-radius: 13px; padding: 12px; display: grid; gap: 8px; }
+    #job-tracker-27 .watch-card-top { display: flex; justify-content: space-between; gap: 8px; align-items: start; }
+    #job-tracker-27 .watch-card strong { font-weight: 500; }
+    #job-tracker-27 .watch-status { border-radius: 999px; padding: 3px 7px; font-size: .72rem; white-space: nowrap; }
+    #job-tracker-27 .watch-status.open { background: var(--job-mint); color: var(--job-ink); }
+    #job-tracker-27 .watch-status.watch { background: var(--job-lilac); color: var(--job-ink); }
+    #job-tracker-27 .watch-status.paused { background: var(--job-peach); color: var(--job-ink); }
+    #job-tracker-27 .watch-card p { color: var(--job-muted); font-size: .79rem; margin: 0; }
+    #job-tracker-27 .watch-card a { color: var(--job-mint-deep); font-size: .79rem; text-decoration: none; }
+    #job-tracker-27 .watch-card a:hover { text-decoration: underline; }
+    #job-tracker-27 .jobs-header { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin: 24px 2px 12px; }
+    #job-tracker-27 .jobs-header h3 { margin: 0; }
+    #job-tracker-27 .jobs-header p { margin: 0; color: var(--job-muted); font-size: .86rem; }
+    #job-tracker-27 .jobs-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+    #job-tracker-27 .job-card { background: var(--job-surface); border: 1px solid var(--job-line); border-radius: 18px; padding: 17px; display: grid; gap: 14px; transition: transform 160ms ease, border-color 160ms ease, background 160ms ease; }
+    #job-tracker-27 .job-card:hover { transform: translateY(-2px); border-color: var(--job-mint-deep); }
+    #job-tracker-27 .job-card.is-active { background: var(--job-selected); border-color: var(--job-mint-deep); }
+    #job-tracker-27 .job-card-top, #job-tracker-27 .job-card-foot { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+    #job-tracker-27 .company-chip, #job-tracker-27 .role-chip { display: inline-flex; align-items: center; border-radius: 999px; padding: 5px 9px; font-size: .78rem; }
+    #job-tracker-27 .company-chip { background: var(--job-mint); color: var(--job-ink); }
+    #job-tracker-27 .role-chip { background: var(--job-lilac); color: var(--job-ink); }
+    #job-tracker-27 .job-company-type { color: var(--job-muted); font-size: .78rem; text-align: right; }
+    #job-tracker-27 .source-label { display: inline-flex; margin-right: 5px; border-radius: 999px; padding: 3px 6px; background: var(--job-sky); color: var(--job-ink); font-size: .7rem; }
+    #job-tracker-27 .source-label.third-party { background: var(--job-peach); }
+    #job-tracker-27 .job-open { appearance: none; border: 0; background: transparent; color: var(--job-ink); text-align: left; padding: 0; font: inherit; cursor: pointer; }
+    #job-tracker-27 .job-open:hover .job-title { color: var(--job-mint-deep); }
+    #job-tracker-27 .job-title { display: block; font-size: 1.08rem; font-weight: 500; transition: color 160ms ease; }
+    #job-tracker-27 .job-location { display: block; margin-top: 6px; color: var(--job-muted); font-size: .86rem; }
+    #job-tracker-27 .job-dates { padding: 10px 11px; background: var(--job-peach); border-radius: 12px; color: var(--job-ink); font-size: .83rem; }
+    #job-tracker-27 .job-dates span { color: var(--job-muted); }
+    #job-tracker-27 .job-card-foot { align-items: end; }
+    #job-tracker-27 .apply-link { color: var(--job-mint-deep); font-weight: 500; text-decoration: none; }
+    #job-tracker-27 .apply-link:hover { text-decoration: underline; }
+    #job-tracker-27 .status-field { display: grid; gap: 4px; color: var(--job-muted); font-size: .74rem; text-align: right; }
+    #job-tracker-27 .status-field select { border: 0; border-bottom: 1px solid var(--job-line); border-radius: 0; padding: 3px 0; background: transparent; color: var(--job-ink); font: inherit; text-align: right; }
+    #job-tracker-27 .job-empty { background: var(--job-surface); border: 1px dashed var(--job-line); border-radius: 18px; padding: 28px; text-align: center; color: var(--job-muted); }
+    #job-tracker-27 .job-detail { margin-top: 18px; background: var(--job-surface); border: 1px solid var(--job-line); border-radius: 18px; overflow: hidden; }
+    #job-tracker-27 .job-detail[hidden] { display: none; }
+    #job-tracker-27 .detail-head { background: var(--job-mint); padding: 18px; display: flex; justify-content: space-between; gap: 12px; align-items: start; }
+    #job-tracker-27 .detail-head h3, #job-tracker-27 .detail-head p { margin: 0; }
+    #job-tracker-27 .detail-head p { margin-top: 5px; color: var(--job-muted); }
+    #job-tracker-27 .detail-close { border: 1px solid color-mix(in srgb, var(--job-mint-deep) 28%, transparent); border-radius: 9px; background: color-mix(in srgb, var(--job-surface) 74%, transparent); color: var(--job-ink); padding: 7px 10px; font: inherit; cursor: pointer; white-space: nowrap; }
+    #job-tracker-27 .detail-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; background: var(--job-line); }
+    #job-tracker-27 .detail-item { background: var(--job-surface); padding: 16px; }
+    #job-tracker-27 .detail-item strong { display: block; color: var(--job-muted); font-size: .8rem; margin-bottom: 7px; font-weight: 400; }
+    #job-tracker-27 .detail-wide { grid-column: 1 / -1; }
+    @media (max-width: 680px) {
+      #job-tracker-27 .job-stats, #job-tracker-27 .job-filters, #job-tracker-27 .watch-grid, #job-tracker-27 .jobs-grid { grid-template-columns: 1fr; }
+      #job-tracker-27 .job-hero, #job-tracker-27 .job-main { padding: 20px; }
+      #job-tracker-27 .detail-grid { grid-template-columns: 1fr; }
+      #job-tracker-27 .detail-wide { grid-column: auto; }
+    }
+  </style>
+
+  <div class="job-shell">
+    <header class="job-hero">
+      <div class="job-hero-top">
+        <div>
+          <span class="job-kicker">2027 CAMPUS HIRING</span>
+          <h2 id="tracker-title">影视动画秋招清单</h2>
+          <p class="job-subtitle">官方确认 · 全职应届生岗位 · 最近核查：2026年8月26日</p>
+        </div>
+        <span id="job-count" class="job-count" aria-live="polite"></span>
+      </div>
+      <div class="job-stats" aria-label="岗位概览">
+        <div class="job-stat"><span>已核实岗位</span><strong id="verified-total"></strong></div>
+        <div class="job-stat"><span>重点公司</span><strong id="company-total"></strong></div>
+        <div class="job-stat"><span>覆盖城市</span><strong id="city-total"></strong></div>
+      </div>
+    </header>
+
+    <main class="job-main">
+      <section class="job-filter-panel" aria-label="岗位筛选">
+        <div class="filter-title"><strong>筛选职位</strong><span>点击职位卡查看 JD 与福利</span></div>
+        <div class="job-filters">
+          <label>城市<select id="filter-city"></select></label>
+          <label>公司类型<select id="filter-company"></select></label>
+          <label>岗位类型<select id="filter-role"></select></label>
+          <label>投递状态<select id="filter-status"></select></label>
+        </div>
+      </section>
+
+      <section class="company-watch" aria-labelledby="watch-heading">
+        <div class="watch-head"><strong id="watch-heading">公司追踪台</strong><span>没有具体全职岗时也会明确显示</span></div>
+        <div id="watch-grid" class="watch-grid"></div>
+      </section>
+
+      <section aria-labelledby="jobs-heading">
+        <div class="jobs-header"><h3 id="jobs-heading">正在招聘</h3><p>状态会保存在当前浏览器</p></div>
+        <div id="jobs-grid" class="jobs-grid"></div>
+        <div id="job-empty" class="job-empty" hidden>没有匹配的校招岗位</div>
+      </section>
+
+      <article id="job-detail" class="job-detail" hidden aria-live="polite">
+        <div class="detail-head">
+          <div><h3 id="detail-title"></h3><p id="detail-meta"></p></div>
+          <button id="close-detail" class="detail-close" type="button">收起详情</button>
+        </div>
+        <div class="detail-grid">
+          <div class="detail-item detail-wide"><strong>岗位 JD 摘要</strong><span id="detail-jd"></span></div>
+          <div class="detail-item"><strong>投递开始</strong><span id="detail-start"></span></div>
+          <div class="detail-item"><strong>截止时间</strong><span id="detail-end"></span></div>
+          <div class="detail-item detail-wide"><strong>薪资与福利</strong><span id="detail-pay"></span></div>
+          <div class="detail-item detail-wide"><strong>官方核查说明</strong><span id="detail-note"></span></div>
+        </div>
+      </article>
+    </main>
+  </div>
+
+  <script>
+  (() => {
+    const root = document.getElementById('job-tracker-27');
+    const tencentList = 'https://join.qq.com/post.html?query=4_85%2C4_89%2Cp_1';
+    const jobs = [
+      {id:'qq-2d-character',company:'腾讯 IEG',companyType:'游戏公司',role:'2D角色设计',roleType:'游戏美术',city:'深圳、上海、杭州',start:'2026-08-11',end:'未公布',jd:'腾讯 2027 校招“游戏美术类”明确岗位。官方职位列表显示该岗位归属 IEG；请从官方入口打开岗位详情，确认项目方向、作品集格式与具体要求。',pay:'薪资未公开。腾讯校招官网公开列示导师培养体系、弹性工作、假期、免费早餐/宵夜及福利激励；具体以 Offer 和入职政策为准。',url:tencentList,note:'官方“2027校园招聘”游戏美术类筛选页在2026年8月16日显示为应届毕业生岗位，Base 为深圳总部、上海、杭州。',status:'未投递'},
+      {id:'qq-2d-scene',company:'腾讯 IEG',companyType:'游戏公司',role:'2D场景设计',roleType:'游戏美术',city:'深圳、上海、杭州',start:'2026-08-11',end:'未公布',jd:'腾讯 2027 校招“游戏美术类”明确岗位。官方职位列表显示该岗位归属 IEG；请从官方入口打开岗位详情，确认项目方向、作品集格式与具体要求。',pay:'薪资未公开。腾讯校招官网公开列示导师培养体系、弹性工作、假期、免费早餐/宵夜及福利激励；具体以 Offer 和入职政策为准。',url:tencentList,note:'官方“2027校园招聘”游戏美术类筛选页在2026年8月16日显示为应届毕业生岗位，Base 为深圳总部、上海、杭州。',status:'未投递'},
+      {id:'qq-3d-character',company:'腾讯 IEG',companyType:'游戏公司',role:'3D角色设计',roleType:'游戏美术',city:'深圳、上海、杭州',start:'2026-08-11',end:'未公布',jd:'腾讯 2027 校招“游戏美术类”明确岗位。官方职位列表显示该岗位归属 IEG；请从官方入口打开岗位详情，确认项目方向、作品集格式与具体要求。',pay:'薪资未公开。腾讯校招官网公开列示导师培养体系、弹性工作、假期、免费早餐/宵夜及福利激励；具体以 Offer 和入职政策为准。',url:tencentList,note:'官方“2027校园招聘”游戏美术类筛选页在2026年8月16日显示为应届毕业生岗位，Base 为深圳总部、上海、杭州。',status:'未投递'},
+      {id:'qq-3d-scene',company:'腾讯 IEG',companyType:'游戏公司',role:'3D场景设计',roleType:'游戏美术',city:'深圳、上海、杭州',start:'2026-08-11',end:'未公布',jd:'腾讯 2027 校招“游戏美术类”明确岗位。官方职位列表显示该岗位归属 IEG；请从官方入口打开岗位详情，确认项目方向、作品集格式与具体要求。',pay:'薪资未公开。腾讯校招官网公开列示导师培养体系、弹性工作、假期、免费早餐/宵夜及福利激励；具体以 Offer 和入职政策为准。',url:tencentList,note:'官方“2027校园招聘”游戏美术类筛选页在2026年8月16日显示为应届毕业生岗位，Base 为深圳总部、上海、杭州。',status:'未投递'},
+      {id:'qq-animation',company:'腾讯 IEG',companyType:'游戏公司',role:'动画',roleType:'动画设计',city:'深圳、上海、杭州',start:'2026-08-11',end:'未公布',jd:'腾讯 2027 校招“游戏美术类”明确岗位。官方职位列表显示该岗位归属 IEG；请从官方入口打开岗位详情，确认项目方向、作品集格式与具体要求。',pay:'薪资未公开。腾讯校招官网公开列示导师培养体系、弹性工作、假期、免费早餐/宵夜及福利激励；具体以 Offer 和入职政策为准。',url:tencentList,note:'官方“2027校园招聘”游戏美术类筛选页在2026年8月16日显示为应届毕业生岗位，Base 为深圳总部、上海、杭州。',status:'未投递'},
+      {id:'qq-vfx',company:'腾讯 IEG',companyType:'游戏公司',role:'特效',roleType:'动效设计',city:'深圳、上海',start:'2026-08-11',end:'未公布',jd:'腾讯 2027 校招“游戏美术类”明确岗位。官方职位列表显示该岗位归属 IEG；请从官方入口打开岗位详情，确认项目方向、作品集格式与具体要求。',pay:'薪资未公开。腾讯校招官网公开列示导师培养体系、弹性工作、假期、免费早餐/宵夜及福利激励；具体以 Offer 和入职政策为准。',url:tencentList,note:'官方“2027校园招聘”游戏美术类筛选页在2026年8月16日显示为应届毕业生岗位，Base 为深圳总部、上海。',status:'未投递'},
+      {id:'qq-tech-art',company:'腾讯 IEG',companyType:'游戏公司',role:'技术美术（多方向）',roleType:'技术美术',city:'远程面试',start:'2026-08-11',end:'未公布',jd:'面向渲染、动画与绑定、工具与管线、PCG、性能优化等方向。官方要求候选人兼具美术素养与 C++/C#/Python 之一的编程能力，熟悉 Unreal 或 Unity 及至少一种 DCC 工具。',pay:'薪资未公开。腾讯校招官网公开列示导师培养体系、弹性工作、假期、免费早餐/宵夜及福利激励；具体以 Offer 和入职政策为准。',url:'https://join.qq.com/post_detail.html?postid=1149967260799269888',note:'官方岗位详情显示为 IEG 互动娱乐事业群，面试城市为远程面试。',status:'未投递'},
+      {id:'qq-game-promo',company:'腾讯 IEG',companyType:'游戏公司',role:'游戏宣发视觉设计',roleType:'品牌视觉 / 视频设计',city:'深圳',start:'2026-08-11',end:'未公布',jd:'腾讯 2027 校招职位列表中的明确岗位，归属 IEG。适合将游戏视觉、品宣创意与视频/动效作品集作为主线的同学；细化职责以职位详情为准。',pay:'薪资未公开。腾讯校招官网公开列示导师培养体系、弹性工作、假期、免费早餐/宵夜及福利激励；具体以 Offer 和入职政策为准。',url:tencentList,note:'官方“2027校园招聘”职位列表显示该岗位为应届毕业生岗位，工作地点为深圳总部。',status:'未投递'},
+      {id:'qq-multimedia',company:'腾讯 IEG / PCG',companyType:'游戏公司',role:'多媒体设计',roleType:'影视动画 / 视频设计',city:'远程面试',start:'2026-08-11',end:'未公布',jd:'负责产品宣发 CG、PV、TVC 等影视项目的导演工作，参与世界观和创意讨论，输出动画脚本或分镜；也会跟进供应商，并参与游戏过场和引擎影视化素材设计。',pay:'薪资未公开。腾讯校招官网公开列示导师培养体系、弹性工作、假期、免费早餐/宵夜及福利激励；具体以 Offer 和入职政策为准。',url:'https://join.qq.com/post_detail.html?postid=1150120298700623872',note:'官方岗位详情显示工作部门为 IEG、PCG，面试城市为远程面试；相关专业包括美术、动画。',status:'未投递'},
+      {id:'qq-visual',company:'腾讯',companyType:'互联网公司',role:'视觉设计',roleType:'品牌视觉 / 视频设计',city:'深圳、北京、上海',start:'2026-08-11',end:'未公布',jd:'腾讯 2027 校招“游戏美术类 / 平面交互类”筛选中展示的应届岗位，覆盖 CDG、CSIG、IEG、PCG 等事业群；细分业务与作品集要求以官方职位详情为准。',pay:'薪资未公开。腾讯校招官网公开列示导师培养体系、弹性工作、假期、免费早餐/宵夜及福利激励；具体以 Offer 和入职政策为准。',url:tencentList,note:'官方职位列表显示该岗位为应届毕业生岗位，Base 为深圳总部、北京、上海。',status:'未投递'},
+      {id:'qq-interaction',company:'腾讯',companyType:'互联网公司',role:'交互设计',roleType:'交互 / 动效设计',city:'深圳、上海',start:'2026-08-11',end:'未公布',jd:'腾讯 2027 校招“平面交互类”筛选中展示的应届岗位，覆盖 CSIG、IEG。适合有产品动效、交互原型或游戏 UI 动效作品集的同学，具体业务以官方详情为准。',pay:'薪资未公开。腾讯校招官网公开列示导师培养体系、弹性工作、假期、免费早餐/宵夜及福利激励；具体以 Offer 和入职政策为准。',url:tencentList,note:'官方职位列表显示该岗位为应届毕业生岗位，Base 为深圳总部、上海。',status:'未投递'},
+      {id:'qq-product-experience',company:'腾讯',companyType:'互联网公司',role:'产品体验设计',roleType:'交互 / 动效设计',city:'深圳、北京、广州',start:'2026-08-11',end:'未公布',jd:'腾讯 2027 校招“平面交互类”筛选中展示的应届岗位，覆盖 CDG、CSIG、PCG、TEG、WXG。适合产品视觉、交互与动效方向，具体业务以官方职位详情为准。',pay:'薪资未公开。腾讯校招官网公开列示导师培养体系、弹性工作、假期、免费早餐/宵夜及福利激励；具体以 Offer 和入职政策为准。',url:tencentList,note:'官方职位列表显示该岗位为应届毕业生岗位，Base 为深圳总部、北京、广州。',status:'未投递'},
+      {id:'bili-video-eval',company:'哔哩哔哩',companyType:'互联网 / 影视内容',role:'视频生成评测专家【2027届】',roleType:'创意内容策划',city:'上海',start:'2026-08-03',end:'2026-12-31',jd:'为视频生成基础模型建立内容评测能力：设计 Benchmark 题目与评分标准，将创作者需求转化为模型能力需求，参与培训、质检，并持续进行内容创作反哺。偏好短剧、漫剧、动画、影视短片、广告等创作经验，以及 AI 视频/图像工具链经验。',pay:'薪资未公开。哔哩哔哩公开介绍校招生 B-STAR 培养体系与导师辅导等成长支持；具体以 Offer 和入职政策为准。',url:'https://jobs.bilibili.com/campus/positions/29906',note:'官方职位页标注为上海全职、2027届，网申起止为2026年8月3日至12月31日。',status:'未投递'},
+      {id:'bili-game-content',company:'哔哩哔哩游戏',companyType:'游戏公司',role:'游戏内容生态运营（创作运营方向）【2027届】',roleType:'游戏内容策划',city:'上海',start:'2026-08-03',end:'2026-12-31',jd:'负责 SLG 版本内容营销，制定游戏宣发节点需求，为达人定制内容，制定账号内容选题与脚本并验收；统筹攻略、玩家故事、泛娱乐等视频方向选题与落地产出。',pay:'薪资未公开。哔哩哔哩公开介绍校招生 B-STAR 培养体系与导师辅导等成长支持；具体以 Offer 和入职政策为准。',url:'https://jobs.bilibili.com/campus/positions/29982',note:'官方职位页标注为上海全职、2027届；同批校招网申规则为2026年8月3日至12月31日，建议在职位页再次确认。',status:'未投递'},
+      {id:'alibaba-game-animation',company:'阿里巴巴集团',companyType:'互联网 / 游戏',role:'游戏动画',roleType:'动画设计',city:'未公布',start:'未公布',end:'未公布',jd:'阿里巴巴 2027届应届生全职岗位列表中展示的明确职位。当前公开检索结果未披露完整岗位职责、Base与截止日期，请通过官方校招页进入职位详情确认。',pay:'官方未公布',url:'https://campus-talent.alibaba.com/campus/position',note:'官方 2027届应届生招聘全职职位列表可检索到“游戏动画”；未将阿里影业与阿里集团岗位混同，具体业务归属以职位详情为准。',status:'未投递'},
+      {id:'alibaba-ai-experience',company:'阿里巴巴集团',companyType:'互联网公司',role:'AI体验设计师',roleType:'交互 / 动效设计',city:'未公布',start:'未公布',end:'未公布',jd:'阿里巴巴 2027届应届生全职岗位列表中展示的明确职位。当前公开检索结果未披露完整岗位职责、Base与截止日期，请通过官方校招页进入职位详情确认。',pay:'官方未公布',url:'https://campus-talent.alibaba.com/campus/position',note:'官方 2027届应届生招聘全职职位列表可检索到“AI体验设计师”；可作为影视动画同学转向 AI 交互与视觉体验的备选方向。',status:'未投递'}
+    ];
+    jobs.push(...[
+      {id:'hg-role-model',company:'鹰角网络',companyType:'游戏公司',role:'角色模型',roleType:'游戏美术 / 3D建模',city:'上海',start:'2026-08-07',end:'2026-10-31',jd:'负责游戏角色头脸、服装/身体/配件及生物模型制作，完成高低模、拓扑、UV、贴图等流程，并与动画绑定协作优化关节环线；需附作品集。',pay:'官方未公布',url:'https://app.mokahr.com/campus-recruitment/hypergryph/26326?locale=zh-CN#/job/241fe7d3-488e-4a76-a217-c5477f5b686d',note:'鹰角官方2027届校招页标注全职、美术表现类、上海市，允许在2026年8月7日至10月31日投递2次。',source:'官网（鹰角校招页）',status:'未投递'},
+      {id:'hg-techart-pcg',company:'鹰角网络',companyType:'游戏公司',role:'技术美术－PCG方向',roleType:'技术美术',city:'上海',start:'2026-08-07',end:'2026-10-31',jd:'参与地形、道路、植被、建筑、场景资产及关卡布局的程序化生成；使用 Houdini 搭建解决方案，参与 HDA、数据处理工具以及与 Unreal/Unity 的工作流建设；需附作品集。',pay:'官方未公布',url:'https://app.mokahr.com/campus-recruitment/hypergryph/26326?locale=zh-CN#/job/52c7d293-350e-4242-8f90-b3d6a96778e1',note:'鹰角官方2027届校招页标注全职、程序技术类、上海市，允许在2026年8月7日至10月31日投递2次。',source:'官网（鹰角校招页）',status:'未投递'},
+      {id:'hg-ui-motion',company:'鹰角网络',companyType:'游戏公司',role:'UI动效设计',roleType:'交互 / 动效设计',city:'上海',start:'2026-08-07',end:'2026-10-31',jd:'负责游戏系统交互动态、界面动效方案与相关特效资源，跟进动效落地。要求熟悉 Unity UI 动效/特效流程，以及 PS、AE、Spine或3D工具；掌握 Shader 更佳。',pay:'官方未公布',url:'https://app.mokahr.com/campus-recruitment/hypergryph/26326?locale=zh-CN#/job/fe5a7815-e4d3-4a8b-88d1-b1c714ec668a',note:'鹰角官方2027届校招页标注全职、美术表现类、上海市，允许在2026年8月7日至10月31日投递2次。',source:'官网（鹰角校招页）',status:'未投递'},
+      {id:'hg-music-rd',company:'鹰角网络',companyType:'游戏公司',role:'音乐设计师－研发方向',roleType:'声音 / 音乐设计',city:'上海',start:'2026-08-07',end:'2026-10-31',jd:'鹰角官方2027届全职职位。具体职责、作品集与测评要求请在职位详情页查看。',pay:'官方未公布',url:'https://app.mokahr.com/campus-recruitment/hypergryph/26326?locale=zh-CN#/job/3ff0c345-c23c-4a6d-a5af-12e964b9ec92',note:'鹰角官方2027届校招页标注全职、产品策划类、上海市，允许在2026年8月7日至10月31日投递2次。',source:'官网（鹰角校招页）',status:'未投递'},
+      {id:'bp-role-model',company:'深蓝互动',companyType:'游戏公司',role:'角色建模设计师－2027届校招（UE5在研）',roleType:'游戏美术 / 3D建模',city:'未公布',start:'2026-08-10',end:'未公布',jd:'官方2027届美术类职位，适合角色3D建模方向；完整职责、Base与作品要求请打开官方职位详情确认。',pay:'官方未公布',url:'https://app.mokahr.com/campus_apply/blueinteractive/38434#/job/f69c78a8-3ae2-4e52-a780-90e5bc0c0020',note:'深蓝互动官方校园招聘页标注2027届校招、美术类，发布时间为2026年8月10日。',source:'官网（深蓝互动校招页）',status:'未投递'},
+      {id:'bp-3d-action',company:'深蓝互动',companyType:'游戏公司',role:'3D动作设计师－2027届校招（UE5在研）',roleType:'动画设计',city:'未公布',start:'2026-08-10',end:'未公布',jd:'官方2027届美术类职位，适合3D角色动作与战斗演出方向；完整职责、Base与作品要求请打开官方职位详情确认。',pay:'官方未公布',url:'https://app.mokahr.com/campus_apply/blueinteractive/38434#/job/9e9f90e6-0e01-4b1b-a835-1358b7978d05',note:'深蓝互动官方校园招聘页标注2027届校招、美术类，发布时间为2026年8月10日。',source:'官网（深蓝互动校招页）',status:'未投递'},
+      {id:'bp-level-editor',company:'深蓝互动',companyType:'游戏公司',role:'地编设计师－2027届校招（UE5在研）',roleType:'游戏美术 / 关卡编辑',city:'未公布',start:'2026-08-10',end:'未公布',jd:'官方2027届美术类职位，面向UE5在研项目的场景/关卡编辑方向；完整职责、Base与作品要求请打开官方职位详情确认。',pay:'官方未公布',url:'https://app.mokahr.com/campus_apply/blueinteractive/38434#/job/5a0b0356-8b2e-4371-9ee1-22ca63179b82',note:'深蓝互动官方校园招聘页标注2027届校招、美术类，发布时间为2026年8月10日。',source:'官网（深蓝互动校招页）',status:'未投递'},
+      {id:'bp-character-concept',company:'深蓝互动',companyType:'游戏公司',role:'角色原画设计师－2027届校招（UE5在研）',roleType:'游戏美术 / 原画',city:'未公布',start:'2026-08-10',end:'未公布',jd:'官方2027届美术类职位，面向UE5在研项目的角色原画方向；完整职责、Base与作品要求请打开官方职位详情确认。',pay:'官方未公布',url:'https://app.mokahr.com/campus_apply/blueinteractive/38434#/job/8901098c-389e-45ac-9268-ae6126a6a24d',note:'深蓝互动官方校园招聘页标注2027届校招、美术类，发布时间为2026年8月10日。',source:'官网（深蓝互动校招页）',status:'未投递'},
+      {id:'bp-vfx',company:'深蓝互动',companyType:'游戏公司',role:'特效设计师－2027届校招（UE5在研）',roleType:'动效设计',city:'未公布',start:'2026-08-10',end:'未公布',jd:'官方2027届美术类职位，面向UE5在研项目的游戏特效方向；完整职责、Base与作品要求请打开官方职位详情确认。',pay:'官方未公布',url:'https://app.mokahr.com/campus_apply/blueinteractive/38434#/job/b244e18e-a970-47e5-b8b0-7d34dd838705',note:'深蓝互动官方校园招聘页标注2027届校招、美术类，发布时间为2026年8月10日。',source:'官网（深蓝互动校招页）',status:'未投递'},
+      {id:'bp-illustration',company:'深蓝互动',companyType:'游戏公司',role:'插画设计师－2027届校招（重返未来：1999）',roleType:'游戏美术 / 插画',city:'未公布',start:'2026-08-10',end:'未公布',jd:'官方2027届美术类职位，面向《重返未来：1999》项目的插画方向；完整职责、Base与作品要求请打开官方职位详情确认。',pay:'官方未公布',url:'https://app.mokahr.com/campus_apply/blueinteractive/38434#/job/d711643b-c1a6-4a5f-822e-3f6bcf011ad6',note:'深蓝互动官方校园招聘页标注2027届校招、美术类，发布时间为2026年8月10日。',source:'官网（深蓝互动校招页）',status:'未投递'},
+      {id:'bp-live2d',company:'深蓝互动',companyType:'游戏公司',role:'Live2D动画设计师－2027届校招（重返未来：1999）',roleType:'动画设计',city:'未公布',start:'2026-08-10',end:'未公布',jd:'解读角色故事与玩法，完成技能/大招创意概念、战斗小人动画、角色大招/入场动态分镜；通过 Live2D 制作动画资源，并用 AE 或 Blender 完成视频与任务拆分。',pay:'官方未公布',url:'https://app.mokahr.com/campus_apply/blueinteractive/38434#/job/2a7d736f-bd9a-44e5-b513-8ddc991c374d',note:'深蓝互动官方职位详情要求2027届本科及以上，发布时间为2026年8月10日；截止日期未公开。',source:'官网（深蓝互动校招页）',status:'未投递'},
+      {id:'bp-3d-vfx',company:'深蓝互动',companyType:'游戏公司',role:'3D特效设计师－2027届校招（重返未来：1999）',roleType:'动效设计',city:'未公布',start:'2026-08-10',end:'未公布',jd:'官方2027届美术类职位，面向《重返未来：1999》项目的3D特效方向；完整职责、Base与作品要求请打开官方职位详情确认。',pay:'官方未公布',url:'https://app.mokahr.com/campus_apply/blueinteractive/38434#/job/73dadea8-1101-490b-8dbc-3897952bff50',note:'深蓝互动官方校园招聘页标注2027届校招、美术类，发布时间为2026年8月10日。',source:'官网（深蓝互动校招页）',status:'未投递'},
+      {id:'bp-vfx-concept',company:'深蓝互动',companyType:'游戏公司',role:'特效原画设计师－2027届校招（重返未来：1999）',roleType:'游戏美术 / 原画',city:'未公布',start:'2026-08-10',end:'未公布',jd:'官方2027届美术类职位，面向《重返未来：1999》项目的特效原画方向；完整职责、Base与作品要求请打开官方职位详情确认。',pay:'官方未公布',url:'https://app.mokahr.com/campus_apply/blueinteractive/38434#/job/f1f8297d-c577-4731-a0b0-81e0fca5441f',note:'深蓝互动官方校园招聘页标注2027届校招、美术类，发布时间为2026年8月10日。',source:'官网（深蓝互动校招页）',status:'未投递'},
+      {id:'bp-scene-concept',company:'深蓝互动',companyType:'游戏公司',role:'场景原画设计师－2027届校招（重返未来：1999）',roleType:'游戏美术 / 原画',city:'未公布',start:'2026-08-10',end:'未公布',jd:'官方2027届美术类职位，面向《重返未来：1999》项目的场景原画方向；完整职责、Base与作品要求请打开官方职位详情确认。',pay:'官方未公布',url:'https://app.mokahr.com/campus_apply/blueinteractive/38434#/job/1baeec66-8f7e-449b-afd4-3a9b59fd6c7d',note:'深蓝互动官方校园招聘页标注2027届校招、美术类，发布时间为2026年8月10日。',source:'官网（深蓝互动校招页）',status:'未投递'},
+      {id:'bp-video-director',company:'深蓝互动',companyType:'游戏公司',role:'视频编导－2027届校招（UE5在研）',roleType:'游戏视频 / 品宣设计',city:'未公布',start:'2026-08-10',end:'未公布',jd:'官方2027届美术类职位，面向UE5在研项目的视频编导方向；完整职责、Base与作品要求请打开官方职位详情确认。',pay:'官方未公布',url:'https://app.mokahr.com/campus_apply/blueinteractive/38434#/job/a0cb18ae-ab75-4eb1-a0f3-7669de992090',note:'深蓝互动官方校园招聘页标注2027届校招、美术类，发布时间为2026年8月10日。',source:'官网（深蓝互动校招页）',status:'未投递'},
+      {id:'bp-gui',company:'深蓝互动',companyType:'游戏公司',role:'GUI设计师－2027届校招（重返未来：1999）',roleType:'交互 / 动效设计',city:'未公布',start:'2026-08-10',end:'未公布',jd:'官方2027届美术类职位，面向《重返未来：1999》项目的GUI设计方向；完整职责、Base与作品要求请打开官方职位详情确认。',pay:'官方未公布',url:'https://app.mokahr.com/campus_apply/blueinteractive/38434#/job/e48c5167-d932-4b08-8bbc-240c2582ab41',note:'深蓝互动官方校园招聘页标注2027届校招、美术类，发布时间为2026年8月10日。',source:'官网（深蓝互动校招页）',status:'未投递'},
+      {id:'bp-character-concept-r1999',company:'深蓝互动',companyType:'游戏公司',role:'角色原画设计师－2027届校招（重返未来：1999）',roleType:'游戏美术 / 原画',city:'未公布',start:'2026-08-10',end:'未公布',jd:'官方2027届美术类职位，面向《重返未来：1999》项目的角色原画方向；完整职责、Base与作品要求请打开官方职位详情确认。',pay:'官方未公布',url:'https://app.mokahr.com/campus_apply/blueinteractive/38434#/job/3efb4a90-2a55-4847-b287-814adf10db8f',note:'深蓝互动官方校园招聘页标注2027届校招、美术类，发布时间为2026年8月10日。',source:'官网（深蓝互动校招页）',status:'未投递'},
+      {id:'he-game-video',company:'乐元素',companyType:'游戏公司',role:'游戏视频设计师－2027校招',roleType:'游戏视频 / 品宣设计',city:'上海',start:'未公布',end:'2027-06-05',jd:'与市场营销、研发部门协作，按游戏产品风格完成宣传PV的设计制作；协助视频外包项目的进度与质量把控，并深入体验二次元游戏以培养产品风格把控力。',pay:'薪资未公开。BOSS页面列示交通/通讯/住房补助、餐补、带薪年假、股票期权、年终奖、体检、意外险、补充医疗与五险一金等；以入职政策为准。',url:'https://www.zhipin.com/job_detail/79e32711a68091b70nBy29q9FFRU.html',note:'BOSS直聘第三方职位页显示为上海、在校/应届、本科，毕业时间2027年，职位状态“招聘中”。投递前请再核对该页面的最新状态。',source:'第三方（BOSS直聘）',status:'未投递'}
+    ]);
+    jobs.push(...[
+      {id:'lilith-scene-concept',company:'莉莉丝游戏',companyType:'游戏公司',role:'场景概念设计师',roleType:'游戏美术 / 原画',city:'上海',start:'未公布',end:'未公布',jd:'参与游戏内场景原画设计，主要负责游戏建筑和场景物件的设计。',pay:'官方未公布',url:'https://lilithgames.jobs.feishu.cn/campus/position/7673446047993563434/detail',note:'莉莉丝官方校招页标注为2027秋招、上海、正式、艺术－概念设计；本次核验日期为2026年8月17日。',source:'官网（莉莉丝校招页）',status:'未投递'},
+      {id:'lilith-2d-animator',company:'莉莉丝游戏',companyType:'游戏公司',role:'2D动画师（AFK）',roleType:'动画设计',city:'上海',start:'未公布',end:'未公布',jd:'制作游戏 Spine 角色动画、道具及场景动态，并参与角色设计脑暴；有 Spine 动画制作经验优先。',pay:'官方未公布',url:'https://lilithgames.jobs.feishu.cn/campus/position/7670747994354682154/detail',note:'莉莉丝官方校招页标注为2027秋招、上海、正式、艺术－动画；本次核验日期为2026年8月17日。',source:'官网（莉莉丝校招页）',status:'未投递'},
+      {id:'lilith-vx-designer',company:'莉莉丝游戏',companyType:'游戏公司',role:'VX设计师',roleType:'交互 / 动效设计',city:'上海',start:'未公布',end:'未公布',jd:'依据 UI 资源和策划需求设计2D界面动效，推进界面动效落地与资源整理；熟练 AE、有 Unity 界面动效经验更佳。',pay:'官方未公布',url:'https://lilithgames.jobs.feishu.cn/campus/position/7672229503464556826/detail',note:'莉莉丝官方校招页标注为2027秋招、上海、正式、艺术－VX；本次核验日期为2026年8月17日。',source:'官网（莉莉丝校招页）',status:'未投递'}
+    ]);
+    jobs.push(...[
+      {id:'byte-tech-art',company:'字节跳动 Glow Studio',companyType:'游戏公司',role:'游戏技术美术工程师',roleType:'技术美术',city:'广州',start:'未公布',end:'未公布',jd:'面向游戏研发的技术美术岗位。官方职位页标注为2027届校园招聘、正式岗位；具体职责、工具要求与作品集/技术材料以职位详情为准。',pay:'官方未公布',url:'https://jobs.bytedance.com/campus/position/7607257696763783459/detail',note:'字节跳动官方校园招聘职位页标注为广州、2027届校园招聘、全职。',source:'官网（字节跳动校园招聘）',status:'未投递'},
+      {id:'byte-combat-planner',company:'字节跳动',companyType:'游戏公司',role:'游戏战斗策划',roleType:'游戏内容策划',city:'北京',start:'未公布',end:'未公布',jd:'面向游戏战斗内容与系统设计的策划岗位。官方职位页标注为2027届校园招聘、正式岗位；具体项目、专业要求与测试安排以职位详情为准。',pay:'官方未公布',url:'https://jobs.bytedance.com/campus/position/7606098748205539642/detail',note:'字节跳动官方校园招聘职位页标注为北京、2027届校园招聘、全职。',source:'官网（字节跳动校园招聘）',status:'未投递'},
+      {id:'byte-creative-visual',company:'字节跳动 今日头条',companyType:'互联网公司',role:'创意视觉设计师',roleType:'品牌视觉 / 视频设计',city:'未公布',start:'未公布',end:'未公布',jd:'面向内容平台品牌与视觉创意方向的设计岗位。官方职位页标注为2027届校园招聘、正式岗位，学历要求本科；实际业务线、Base与作品集要求请在职位详情中确认。',pay:'官方未公布',url:'https://jobs.bytedance.com/campus/position/7669688946822072629/detail',note:'字节跳动官方校园招聘职位页标注为今日头条、2027届校园招聘、全职；公开检索结果未展示Base与截止时间。',source:'官网（字节跳动校园招聘）',status:'未投递'}
+    ]);
+    jobs.push(...[
+      {id:'cyou-action',company:'畅游',companyType:'游戏公司',role:'游戏动作设计师',roleType:'动画设计',city:'未公布',start:'未公布',end:'未公布',jd:'畅游官方2027届秋招全职游戏美术职位。完整岗位职责、作品集与面试安排请在职位详情页查看。',pay:'薪资未公布。畅游官网列示校招编制保护、导师制度、七险一金、15天带薪年假、年度体检等；具体以Offer为准。',url:'https://app.mokahr.com/campus-recruitment/cyou-inc/42233#/job/2344e404-96c5-4d8d-8469-104dbd437b20',note:'畅游官方校招职位页标注2027届秋招、全职、游戏美术，职位发布时间为2026年7月27日。',source:'官网（畅游校招页）',status:'未投递'},
+      {id:'cyou-3d-character',company:'畅游',companyType:'游戏公司',role:'3D角色设计师',roleType:'游戏美术 / 3D建模',city:'未公布',start:'未公布',end:'未公布',jd:'畅游官方2027届秋招全职游戏美术职位。完整岗位职责、作品集与面试安排请在职位详情页查看。',pay:'薪资未公布。畅游官网列示校招编制保护、导师制度、七险一金、15天带薪年假、年度体检等；具体以Offer为准。',url:'https://app.mokahr.com/campus-recruitment/cyou-inc/42233#/job/2f4a38ad-4fdb-4fd9-bb42-f8291c1c4897',note:'畅游官方校招职位页标注2027届秋招、全职、游戏美术，职位发布时间为2026年7月27日。',source:'官网（畅游校招页）',status:'未投递'},
+      {id:'cyou-2d-character',company:'畅游',companyType:'游戏公司',role:'2D角色原画设计师',roleType:'游戏美术 / 原画',city:'未公布',start:'未公布',end:'未公布',jd:'畅游官方2027届校招全职游戏美术职位。完整岗位职责、作品集与面试安排请在职位详情页查看。',pay:'薪资未公布。畅游官网列示校招编制保护、导师制度、七险一金、15天带薪年假、年度体检等；具体以Offer为准。',url:'https://app.mokahr.com/campus-recruitment/cyou-inc/42233#/job/41d190e8-daa1-46b9-b691-ebb7bb3bf74b',note:'畅游官方校招职位页标注2027届校招、全职、游戏美术，职位发布时间为2026年7月27日。',source:'官网（畅游校招页）',status:'未投递'},
+      {id:'cyou-ai-art',company:'畅游',companyType:'游戏公司',role:'AI美术工程师',roleType:'技术美术',city:'未公布',start:'未公布',end:'未公布',jd:'畅游官方2027届秋招全职游戏美术职位。适合具备美术与AI工具/工程能力的同学；完整职责与要求请在职位详情页查看。',pay:'薪资未公布。畅游官网列示校招编制保护、导师制度、七险一金、15天带薪年假、年度体检等；具体以Offer为准。',url:'https://app.mokahr.com/campus-recruitment/cyou-inc/42233#/job/a3c6846d-070d-41ab-9ee7-88cd0829bc1a',note:'畅游官方校招职位页标注2027届秋招、全职、游戏美术，职位发布时间为2026年7月27日。',source:'官网（畅游校招页）',status:'未投递'},
+      {id:'cyou-action-director',company:'畅游',companyType:'游戏公司',role:'动作导演',roleType:'动画设计',city:'未公布',start:'未公布',end:'未公布',jd:'畅游官方2027届秋招全职游戏美术职位。完整岗位职责、作品集与面试安排请在职位详情页查看。',pay:'薪资未公布。畅游官网列示校招编制保护、导师制度、七险一金、15天带薪年假、年度体检等；具体以Offer为准。',url:'https://app.mokahr.com/campus-recruitment/cyou-inc/42233#/job/c2f821af-e278-41a2-a1e0-9dc5413e30b1',note:'畅游官方校招职位页标注2027届秋招、全职、游戏美术，职位发布时间为2026年7月27日。',source:'官网（畅游校招页）',status:'未投递'},
+      {id:'cyou-vfx',company:'畅游',companyType:'游戏公司',role:'特效设计师',roleType:'动效设计',city:'未公布',start:'未公布',end:'未公布',jd:'畅游官方2027届秋招全职游戏美术职位。完整岗位职责、作品集与面试安排请在职位详情页查看。',pay:'薪资未公布。畅游官网列示校招编制保护、导师制度、七险一金、15天带薪年假、年度体检等；具体以Offer为准。',url:'https://app.mokahr.com/campus-recruitment/cyou-inc/42233#/job/9cbc036f-dc08-44bf-8ddd-25827622e191',note:'畅游官方校招职位页标注2027届秋招、全职、游戏美术，职位发布时间为2026年7月27日。',source:'官网（畅游校招页）',status:'未投递'},
+      {id:'cyou-ui',company:'畅游',companyType:'游戏公司',role:'游戏UI设计师',roleType:'交互 / 动效设计',city:'未公布',start:'未公布',end:'未公布',jd:'畅游官方2027届秋招全职游戏美术职位。完整岗位职责、作品集与面试安排请在职位详情页查看。',pay:'薪资未公布。畅游官网列示校招编制保护、导师制度、七险一金、15天带薪年假、年度体检等；具体以Offer为准。',url:'https://app.mokahr.com/campus-recruitment/cyou-inc/42233#/job/532a41ba-27e2-4925-8fbb-7836f83f8428',note:'畅游官方校招职位页标注2027届秋招、全职、游戏美术，职位发布时间为2026年7月27日。',source:'官网（畅游校招页）',status:'未投递'},
+      {id:'cyou-tech-art',company:'畅游',companyType:'游戏公司',role:'技术美术',roleType:'技术美术',city:'未公布',start:'未公布',end:'未公布',jd:'畅游官方2027届校招全职游戏美术职位。完整岗位职责、作品集与面试安排请在职位详情页查看。',pay:'薪资未公布。畅游官网列示校招编制保护、导师制度、七险一金、15天带薪年假、年度体检等；具体以Offer为准。',url:'https://app.mokahr.com/campus-recruitment/cyou-inc/42233#/job/9f1d3b6c-7eeb-48b2-88ff-ae97be1fc512',note:'畅游官方校招职位页标注2027届校招、全职、游戏美术，职位发布时间为2026年7月27日。',source:'官网（畅游校招页）',status:'未投递'},
+      {id:'cyou-3d-scene',company:'畅游',companyType:'游戏公司',role:'3D场景设计师',roleType:'游戏美术 / 3D建模',city:'未公布',start:'未公布',end:'未公布',jd:'畅游官方2027届秋招全职游戏美术职位。完整岗位职责、作品集与面试安排请在职位详情页查看。',pay:'薪资未公布。畅游官网列示校招编制保护、导师制度、七险一金、15天带薪年假、年度体检等；具体以Offer为准。',url:'https://app.mokahr.com/campus-recruitment/cyou-inc/42233#/job/9549790e-834d-41f4-9e71-adc1560f5c3e',note:'畅游官方校招职位页标注2027届秋招、全职、游戏美术，职位发布时间为2026年7月27日。',source:'官网（畅游校招页）',status:'未投递'},
+      {id:'cyou-2d-scene',company:'畅游',companyType:'游戏公司',role:'2D场景设计师',roleType:'游戏美术 / 原画',city:'未公布',start:'未公布',end:'未公布',jd:'畅游官方2027届秋招全职游戏美术职位。完整岗位职责、作品集与面试安排请在职位详情页查看。',pay:'薪资未公布。畅游官网列示校招编制保护、导师制度、七险一金、15天带薪年假、年度体检等；具体以Offer为准。',url:'https://app.mokahr.com/campus-recruitment/cyou-inc/42233#/job/c18c30d2-c29a-4932-b371-02ab4d6e2298',note:'畅游官方校招职位页标注2027届秋招、全职、游戏美术，职位发布时间为2026年7月27日。',source:'官网（畅游校招页）',status:'未投递'}
+    ]);
+    jobs.forEach(job => { if (job.company === '深蓝互动' && job.start === '2026-08-10') job.start = '未公布'; });
+    jobs.forEach(job => { if (['bp-level-editor','bp-video-director'].includes(job.id)) { job.city = '广州'; job.source = '官网（深蓝互动校招页）+ 第三方（BOSS直聘）'; job.pay = 'BOSS页面列示生日/节日福利、团建、零食下午茶、餐补、带薪年假、全勤奖、年终奖、体检、补充医疗与五险一金；以入职政策为准。'; } });
+    const companies = [
+      {name:'网易游戏',state:'watch',label:'持续核验',text:'已纳入官方校招页追踪。当前没有补入无法确认“2027届全职”的旧职位。',url:'https://campus.163.com/'},
+      {name:'字节跳动',state:'open',label:'3 个已收录',text:'已补充游戏技术美术工程师、游戏战斗策划和创意视觉设计师三个具体2027届全职岗位。',url:'https://jobs.bytedance.com/campus'},
+      {name:'哔哩哔哩',state:'open',label:'2 个全职岗',text:'已补充视频生成评测专家、游戏内容生态运营两个具体2027届全职岗位。',url:'https://jobs.bilibili.com/campus/positions'},
+      {name:'畅游',state:'open',label:'10 个已收录',text:'官方2027届校招游戏美术类共24个职位，已优先收录动作、原画、3D、特效、UI与技术美术等10个匹配岗位。',url:'https://campus.changyou.com/'},
+      {name:'鹰角网络',state:'open',label:'4 个已收录',text:'已补充角色模型、技术美术PCG、UI动效与音乐设计师等具体2027届全职岗位。',url:'https://campus.hypergryph.com/'},
+      {name:'深蓝互动',state:'open',label:'13 个已收录',text:'已补充UE5和《重返未来：1999》项目的原画、模型、动画、特效、GUI、视频编导等具体岗位。',url:'https://campus.bluepoch.com/'},
+      {name:'乐元素',state:'open',label:'1 个第三方岗',text:'已从BOSS直聘补充游戏视频设计师；该岗位会保留第三方来源标识，需投递前复核。',url:'https://www.happyelements.com/'},
+      {name:'莉莉丝游戏',state:'open',label:'3 个已收录',text:'已补充场景概念设计师、2D动画师（AFK）和VX设计师三个2027秋招正式岗位。',url:'https://lilithgames.jobs.feishu.cn/campus/'},
+      {name:'叠纸游戏',state:'paused',label:'暂未开放职位',text:'官方2027校园招聘页面当前显示0个职位；官网一旦释放具体影视动画类全职岗位会补入。',url:'https://career.papegames.com/campus'},
+      {name:'库洛游戏',state:'paused',label:'暂未开放职位',text:'官方校园招聘页显示校招流程已启动，但美术、策划、技术等当前均为0个岗位；继续监测职位释放。',url:'https://kurogame.jobs.feishu.cn/campus'},
+      {name:'米哈游',state:'watch',label:'持续核验',text:'2027届招聘已启动；当前可核验的匹配职位以实习为主，因此不放入校招岗位卡。',url:'https://jobs.mihoyo.com/'},
+      {name:'完美世界',state:'paused',label:'暂未见细岗',text:'当前官方页未检索到可确认的2027届全职影视动画/游戏美术细岗。',url:'https://job.wanmei.com/'},
+      {name:'爱奇艺',state:'paused',label:'暂未见细岗',text:'当前官方招聘页未检索到可确认的2027届全职影视创意细岗。',url:'https://zhaopin.iqiyi.com/'},
+      {name:'快手',state:'watch',label:'校招已启',text:'2027届校招已开放；视频与内容创意的具体全职职位仍在等待官方详情页公开。',url:'https://zhaopin.kuaishou.cn/'},
+      {name:'阿里影业 / 阿里集团',state:'open',label:'2 个相关岗',text:'未发现“阿里影业”独立的2027届职位；已补充阿里集团的游戏动画与AI体验设计师。',url:'https://campus-talent.alibaba.com/campus/position'}
+    ];
+    const stateKey = '27grad-creative-school-job-status-v2';
+    const stored = JSON.parse(localStorage.getItem(stateKey) || '{}');
+    jobs.forEach(job => { if (stored[job.id]) job.status = stored[job.id]; });
+    const statuses = ['未投递','已投递','笔试 / 测评','面试中','Offer','已拒绝'];
+    const filters = { city: root.querySelector('#filter-city'), company: root.querySelector('#filter-company'), role: root.querySelector('#filter-role'), status: root.querySelector('#filter-status') };
+    const grid = root.querySelector('#jobs-grid');
+    const empty = root.querySelector('#job-empty');
+    const watchGrid = root.querySelector('#watch-grid');
+    const count = root.querySelector('#job-count');
+    const detail = root.querySelector('#job-detail');
+    const detailFields = { title: root.querySelector('#detail-title'), meta: root.querySelector('#detail-meta'), jd: root.querySelector('#detail-jd'), start: root.querySelector('#detail-start'), end: root.querySelector('#detail-end'), pay: root.querySelector('#detail-pay'), note: root.querySelector('#detail-note') };
+    const optionList = (element, values, allText) => { element.innerHTML = `<option value="">${allText}</option>${values.map(value => `<option value="${value}">${value}</option>`).join('')}`; };
+    optionList(filters.city, [...new Set(jobs.flatMap(job => job.city.split('、')))].sort(), '全部城市');
+    optionList(filters.company, [...new Set(jobs.map(job => job.companyType))], '全部公司类型');
+    optionList(filters.role, [...new Set(jobs.map(job => job.roleType))], '全部岗位类型');
+    optionList(filters.status, statuses, '全部状态');
+    root.querySelector('#verified-total').textContent = `${jobs.length} 个`;
+    root.querySelector('#company-total').textContent = `${companies.length + 1} 家`;
+    root.querySelector('#city-total').textContent = `${new Set(jobs.flatMap(job => job.city.split('、')).filter(city => city !== '未公布')).size} 个`;
+    const renderCompanies = () => {
+      watchGrid.innerHTML = '';
+      companies.forEach(company => {
+        const card = document.createElement('article');
+        card.className = 'watch-card';
+        card.innerHTML = `<div class="watch-card-top"><strong>${company.name}</strong><span class="watch-status ${company.state}">${company.label}</span></div><p>${company.text}</p><a href="${company.url}" target="_blank" rel="noopener">官方招聘页 →</a>`;
+        watchGrid.appendChild(card);
+      });
+    };
+    let selectedId = null;
+    const visibleJobs = () => jobs.filter(job => (!filters.city.value || job.city.includes(filters.city.value)) && (!filters.company.value || job.companyType === filters.company.value) && (!filters.role.value || job.roleType === filters.role.value) && (!filters.status.value || job.status === filters.status.value));
+    const openDetail = job => {
+      detailFields.title.textContent = job.role;
+      detailFields.meta.textContent = `${job.company} · ${job.companyType} · ${job.city} · ${job.roleType}`;
+      detailFields.jd.textContent = job.jd;
+      detailFields.start.textContent = job.start;
+      detailFields.end.textContent = job.end;
+      detailFields.pay.textContent = job.pay;
+      detailFields.note.textContent = `来源：${job.source || '官网招聘页'} · ${job.note}`;
+      selectedId = job.id;
+      detail.hidden = false;
+      render();
+      detail.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    };
+    const render = () => {
+      const list = visibleJobs();
+      count.textContent = `显示 ${list.length} / ${jobs.length} 个岗位`;
+      grid.innerHTML = '';
+      empty.hidden = list.length !== 0;
+      if (!list.length) { return; }
+      list.forEach(job => {
+        const card = document.createElement('article');
+        card.className = `job-card${selectedId === job.id ? ' is-active' : ''}`;
+        const isThirdParty = (job.source || '').startsWith('第三方');
+        const sourceText = isThirdParty ? '第三方线索' : '官网确认';
+        card.innerHTML = `<div class="job-card-top"><span class="company-chip">${job.company}</span><span class="job-company-type"><span class="source-label${isThirdParty ? ' third-party' : ''}">${sourceText}</span>${job.companyType}</span></div><button class="job-open" type="button"><span class="job-title">${job.role}</span><span class="job-location">Base · ${job.city}</span></button><div><span class="role-chip">${job.roleType}</span></div><div class="job-dates">网申开始 · ${job.start}<br><span>截止 · ${job.end}</span></div><div class="job-card-foot"><a class="apply-link" href="${job.url}" target="_blank" rel="noopener">查看 / 投递 →</a><label class="status-field">投递进度<select aria-label="${job.company} ${job.role}的投递状态">${statuses.map(status => `<option value="${status}" ${status === job.status ? 'selected' : ''}>${status}</option>`).join('')}</select></label></div>`;
+        card.querySelector('.job-open').addEventListener('click', () => openDetail(job));
+        card.querySelector('.status-field select').addEventListener('change', event => { job.status = event.target.value; localStorage.setItem(stateKey, JSON.stringify(Object.fromEntries(jobs.map(item => [item.id, item.status])))); render(); });
+        grid.appendChild(card);
+      });
+    };
+    Object.values(filters).forEach(filter => filter.addEventListener('change', render));
+    root.querySelector('#close-detail').addEventListener('click', () => { detail.hidden = true; });
+    renderCompanies();
+    render();
+  })();
+  </script>
+</section>
