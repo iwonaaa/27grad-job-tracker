@@ -221,6 +221,15 @@
       {id:'kuro-interaction-designer',company:'库洛游戏',companyType:'游戏公司',role:'游戏交互设计师',roleType:'交互 / 动效设计',city:'广州',start:'未公布',end:'未公布',jd:'负责游戏交互方案的原型、流程与概念设计，与UI、策划、程序协作，分析体验与用户反馈并持续推动优化方案落地。',pay:'官方未公布',url:'https://kurogame.jobs.feishu.cn/campus/position/7679552113555360051/detail',note:'库洛官方职位页标注广州、美术类、2027届秋季校园招聘。',source:'官网（库洛校招页）',status:'未投递'},
       {id:'kuro-user-research',company:'库洛游戏',companyType:'游戏公司',role:'用户研究',roleType:'创意内容策划',city:'广州',start:'未公布',end:'未公布',jd:'承接研发、运营、市场团队的研究需求，完成研究方案、执行、数据分析与报告，洞察玩家诉求并辅助产品设计和迭代。',pay:'官方未公布',url:'https://kurogame.jobs.feishu.cn/campus/position/7674896880354314532/detail',note:'库洛官方职位页标注广州、运营类、2027届秋季校园招聘。',source:'官网（库洛校招页）',status:'未投递'}
     ]);
+    const mihoyo2027Roles = [
+      ['hard-surface','3D硬表面','游戏美术 / 3D建模'],['scene-concept','场景原画师','游戏美术 / 原画'],['vfx-concept','特效原画设计师','游戏美术 / 原画'],['game-concept','游戏原画师（角色/怪物/美宣）','游戏美术 / 原画'],['scene-model','场景模型师','游戏美术 / 3D建模'],['character-model','角色模型师（二次元NPR/次世代PBR）','游戏美术 / 3D建模'],['storyboard','分镜师','影视动画 / 视频设计'],['level-art','关卡美术设计师','游戏美术 / 关卡编辑'],['lighting','灯光师','影视动画 / 视频设计'],['animation-producer','动画制片','影视动画 / 视频设计'],['game-animator','游戏动画师（Max/Maya）','动画设计'],['cg-animator','CG动画师（文戏/武戏）','动画设计'],['facial-capture','面捕技术动画师','动画设计'],['motion-capture','动捕动画师','动画设计'],['character-concept','角色概念设计师（动画/特效）','游戏美术 / 原画'],['tech-art','技术美术-多方向','技术美术'],['houdini-vfx','Houdini特效师','动效设计'],['game-vfx','游戏特效师（Unity/Unreal）','动效设计'],['ui-blueprint','UI蓝图工程师','交互 / 动效设计'],['game-ui','游戏UI设计师','交互 / 动效设计'],['ui-motion','UI动效设计师','交互 / 动效设计'],['visual','视觉设计师','品牌视觉 / 视频设计'],['video-director','视频编导','游戏视频 / 品宣设计'],['video-post','视频设计师（后期制作）','游戏视频 / 品宣设计'],['ai-art','综合美术（AI向）','游戏美术'],['rigger','绑定师（Maya/Max）','动画设计'],['quest-planner','任务策划','游戏内容策划'],['technical-planner','技术策划','游戏内容策划'],['combat-planner','战斗策划','游戏内容策划'],['numerical-planner','数值策划','游戏内容策划'],['system-planner','系统策划','游戏内容策划'],['level-planner','关卡策划','游戏内容策划'],['threec-planner','3C策划','游戏内容策划'],['interaction-planner','交互策划（UE）','游戏内容策划'],['narrative-planner','游戏文案策划','创意内容策划'],['marketing-planner','市场营销策划（统招）','创意内容策划']
+    ];
+    jobs.push(...mihoyo2027Roles.map(([id, role, roleType]) => ({
+      id: `mihoyo-${id}`, company:'米哈游', companyType:'游戏公司', role, roleType, city:'上海', start:'未公布', end:'未公布',
+      jd:'米哈游官网2027届秋招全职岗位。该岗位已在官网“美术&表现类”或“产品策划类”等对应筛选中展示；完整JD、作品集/测试要求请进入官方职位页查看。',
+      pay:'官方未公布', url:'https://jobs.mihoyo.com/#/campus/position?projectIds%5B0%5D=13',
+      note:'米哈游官方校招页标注为全职、2027届（2026年9月至2027年8月期间毕业）；Base为上海。', source:'官网（米哈游校招页）', status:'未投递'
+    })));
     jobs.push(...[
       {id:'cyou-action',company:'畅游',companyType:'游戏公司',role:'游戏动作设计师',roleType:'动画设计',city:'未公布',start:'未公布',end:'未公布',jd:'畅游官方2027届秋招全职游戏美术职位。完整岗位职责、作品集与面试安排请在职位详情页查看。',pay:'薪资未公布。畅游官网列示校招编制保护、导师制度、七险一金、15天带薪年假、年度体检等；具体以Offer为准。',url:'https://app.mokahr.com/campus-recruitment/cyou-inc/42233#/job/2344e404-96c5-4d8d-8469-104dbd437b20',note:'畅游官方校招职位页标注2027届秋招、全职、游戏美术，职位发布时间为2026年7月27日。',source:'官网（畅游校招页）',status:'未投递'},
       {id:'cyou-3d-character',company:'畅游',companyType:'游戏公司',role:'3D角色设计师',roleType:'游戏美术 / 3D建模',city:'未公布',start:'未公布',end:'未公布',jd:'畅游官方2027届秋招全职游戏美术职位。完整岗位职责、作品集与面试安排请在职位详情页查看。',pay:'薪资未公布。畅游官网列示校招编制保护、导师制度、七险一金、15天带薪年假、年度体检等；具体以Offer为准。',url:'https://app.mokahr.com/campus-recruitment/cyou-inc/42233#/job/2f4a38ad-4fdb-4fd9-bb42-f8291c1c4897',note:'畅游官方校招职位页标注2027届秋招、全职、游戏美术，职位发布时间为2026年7月27日。',source:'官网（畅游校招页）',status:'未投递'},
@@ -246,7 +255,7 @@
       {name:'莉莉丝游戏',state:'open',label:'3 个已收录',text:'已补充场景概念设计师、2D动画师（AFK）和VX设计师三个2027秋招正式岗位。',url:'https://lilithgames.jobs.feishu.cn/campus/'},
       {name:'叠纸游戏',state:'paused',label:'暂未开放职位',text:'官方2027校园招聘页面当前显示0个职位；官网一旦释放具体影视动画类全职岗位会补入。',url:'https://career.papegames.com/campus'},
       {name:'库洛游戏',state:'open',label:'4 个已收录',text:'已补充游戏UI设计、UI开发、交互设计与用户研究等具体2027届秋招岗位；官网持续开放更多美术、策划、技术岗位。',url:'https://kurogame.jobs.feishu.cn/campus'},
-      {name:'米哈游',state:'watch',label:'持续核验',text:'2027届招聘已启动；当前可核验的匹配职位以实习为主，因此不放入校招岗位卡。',url:'https://jobs.mihoyo.com/'},
+      {name:'米哈游',state:'open',label:'36 个已收录',text:'已补充原画、模型、动画、特效、UI、视频、技术美术、文案与多类游戏策划等2027届全职岗位。',url:'https://jobs.mihoyo.com/#/campus/position?projectIds%5B0%5D=13'},
       {name:'完美世界',state:'paused',label:'暂未见细岗',text:'当前官方页未检索到可确认的2027届全职影视动画/游戏美术细岗。',url:'https://job.wanmei.com/'},
       {name:'爱奇艺',state:'paused',label:'暂未见细岗',text:'当前官方招聘页未检索到可确认的2027届全职影视创意细岗。',url:'https://zhaopin.iqiyi.com/'},
       {name:'快手',state:'watch',label:'校招已启',text:'2027届校招已开放；视频与内容创意的具体全职职位仍在等待官方详情页公开。',url:'https://zhaopin.kuaishou.cn/'},
@@ -319,3 +328,4 @@
   })();
   </script>
 </section>
+
